@@ -14,6 +14,9 @@
 		F728C7B81AD9A7E10010322E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F728C7B71AD9A7E10010322E /* Images.xcassets */; };
 		F728C7BB1AD9A7E10010322E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F728C7B91AD9A7E10010322E /* LaunchScreen.xib */; };
 		F728C7C71AD9A7E10010322E /* Contact_ViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7C61AD9A7E10010322E /* Contact_ViewerTests.swift */; };
+		F728C7D11AD9A8380010322E /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7D01AD9A8380010322E /* Contact.swift */; };
+		F728C7D31AD9BDCB0010322E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7D21AD9BDCB0010322E /* ViewController.swift */; };
+		F728C7D51AD9BFCB0010322E /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F728C7D41AD9BFCB0010322E /* EditViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		F728C7C01AD9A7E10010322E /* Contact ViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Contact ViewerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F728C7C51AD9A7E10010322E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F728C7C61AD9A7E10010322E /* Contact_ViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact_ViewerTests.swift; sourceTree = "<group>"; };
+		F728C7D01AD9A8380010322E /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		F728C7D21AD9BDCB0010322E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F728C7D41AD9BFCB0010322E /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,9 @@
 				F728C7B71AD9A7E10010322E /* Images.xcassets */,
 				F728C7B91AD9A7E10010322E /* LaunchScreen.xib */,
 				F728C7AC1AD9A7E10010322E /* Supporting Files */,
+				F728C7D01AD9A8380010322E /* Contact.swift */,
+				F728C7D21AD9BDCB0010322E /* ViewController.swift */,
+				F728C7D41AD9BFCB0010322E /* EditViewController.xib */,
 			);
 			path = "Contact Viewer";
 			sourceTree = "<group>";
@@ -195,6 +204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F728C7D51AD9BFCB0010322E /* EditViewController.xib in Resources */,
 				F728C7B61AD9A7E10010322E /* Main.storyboard in Resources */,
 				F728C7BB1AD9A7E10010322E /* LaunchScreen.xib in Resources */,
 				F728C7B81AD9A7E10010322E /* Images.xcassets in Resources */,
@@ -215,6 +225,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F728C7D31AD9BDCB0010322E /* ViewController.swift in Sources */,
+				F728C7D11AD9A8380010322E /* Contact.swift in Sources */,
 				F728C7B31AD9A7E10010322E /* DetailViewController.swift in Sources */,
 				F728C7B11AD9A7E10010322E /* MasterViewController.swift in Sources */,
 				F728C7AF1AD9A7E10010322E /* AppDelegate.swift in Sources */,
@@ -343,6 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Contact Viewer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -353,6 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Contact Viewer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -411,6 +425,7 @@
 				F728C7CC1AD9A7E10010322E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F728C7CD1AD9A7E10010322E /* Build configuration list for PBXNativeTarget "Contact ViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +434,7 @@
 				F728C7CF1AD9A7E10010322E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

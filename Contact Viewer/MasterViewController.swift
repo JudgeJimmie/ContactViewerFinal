@@ -45,8 +45,9 @@ class MasterViewController: UITableViewController {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentFirectory,<#domainMask: NSSearchPathDomainMask#>, <,#expandTilde: Bool#>)
         let path = NSBundle.mainBundle().pathForResource("FileName", ofType: "fileExt")
         
+        I don't think this will work!!
         GO away DAN!!
-        
+        Where are we!!!
 */
     }
 

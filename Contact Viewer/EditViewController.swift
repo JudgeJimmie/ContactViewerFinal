@@ -14,8 +14,14 @@ class EditViewController: UIViewController {
     @IBOutlet weak var editNameText: UITextField!
     
     func configureEditView() {
+        
+        if self.editItem==nil{
+            self.title="New Contact"
+        }
         // Update the user interface for the detail item.
         if let editContact: Contact = self.editItem {
+            
+            
             self.editNameText.text = editContact.name
         }
     }

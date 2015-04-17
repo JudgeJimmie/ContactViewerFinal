@@ -13,12 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
 
-    var detailItem: Contact? {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }
+    var detailItem: Contact?
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -53,5 +48,12 @@ class DetailViewController: UIViewController {
         self.performSegueWithIdentifier("editContactFromDetail", sender: nil)
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            if segue.identifier == "editContactFromDetail"{
+                let controller = segue.destinationViewController as EditViewController
+                controller.editItem = self.detailItem
+        }
+    }
+    
 }
 

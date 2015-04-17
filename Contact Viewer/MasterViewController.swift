@@ -41,16 +41,10 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
-        /* Adding ths test comment
+        /*
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentFirectory,<#domainMask: NSSearchPathDomainMask#>, <,#expandTilde: Bool#>)
         let path = NSBundle.mainBundle().pathForResource("FileName", ofType: "fileExt")
-        
-        I don't think this will work!!
-        GO away DAN!!
-        test1234
-                
-        Where are we!!!
-*/
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +56,10 @@ class MasterViewController: UITableViewController {
   //      objects.insert(Contact(), atIndex: 0)
     //    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
       //  self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        
+        
+        
+        self.performSegueWithIdentifier("newContactFromMaster", sender: nil)
     }
 
     // MARK: - Segues
@@ -75,6 +73,9 @@ class MasterViewController: UITableViewController {
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        }
+        else if segue.identifier == "newContact"{
+            
         }
     }
 

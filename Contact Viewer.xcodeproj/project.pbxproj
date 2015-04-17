@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6F133DC1AE0860B0072121E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F133DB1AE0860B0072121E /* EditViewController.swift */; };
 		F728C7AF1AD9A7E10010322E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7AE1AD9A7E10010322E /* AppDelegate.swift */; };
 		F728C7B11AD9A7E10010322E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7B01AD9A7E10010322E /* MasterViewController.swift */; };
 		F728C7B31AD9A7E10010322E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7B21AD9A7E10010322E /* DetailViewController.swift */; };
@@ -16,7 +17,6 @@
 		F728C7C71AD9A7E10010322E /* Contact_ViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7C61AD9A7E10010322E /* Contact_ViewerTests.swift */; };
 		F728C7D11AD9A8380010322E /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7D01AD9A8380010322E /* Contact.swift */; };
 		F728C7D31AD9BDCB0010322E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F728C7D21AD9BDCB0010322E /* ViewController.swift */; };
-		F728C7D51AD9BFCB0010322E /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F728C7D41AD9BFCB0010322E /* EditViewController.xib */; };
 		F76CE0111ADF2D0C007B4EDC /* ToDO in Resources */ = {isa = PBXBuildFile; fileRef = F76CE0101ADF2D0C007B4EDC /* ToDO */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B6F133DB1AE0860B0072121E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		F728C7A91AD9A7E10010322E /* Contact Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F728C7AD1AD9A7E10010322E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F728C7AE1AD9A7E10010322E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		F728C7C61AD9A7E10010322E /* Contact_ViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact_ViewerTests.swift; sourceTree = "<group>"; };
 		F728C7D01AD9A8380010322E /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		F728C7D21AD9BDCB0010322E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F728C7D41AD9BFCB0010322E /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		F76CE0101ADF2D0C007B4EDC /* ToDO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDO; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,7 +97,7 @@
 				F728C7AC1AD9A7E10010322E /* Supporting Files */,
 				F728C7D01AD9A8380010322E /* Contact.swift */,
 				F728C7D21AD9BDCB0010322E /* ViewController.swift */,
-				F728C7D41AD9BFCB0010322E /* EditViewController.xib */,
+				B6F133DB1AE0860B0072121E /* EditViewController.swift */,
 			);
 			path = "Contact Viewer";
 			sourceTree = "<group>";
@@ -207,7 +207,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F728C7D51AD9BFCB0010322E /* EditViewController.xib in Resources */,
 				F728C7B61AD9A7E10010322E /* Main.storyboard in Resources */,
 				F76CE0111ADF2D0C007B4EDC /* ToDO in Resources */,
 				F728C7BB1AD9A7E10010322E /* LaunchScreen.xib in Resources */,
@@ -231,6 +230,7 @@
 			files = (
 				F728C7D31AD9BDCB0010322E /* ViewController.swift in Sources */,
 				F728C7D11AD9A8380010322E /* Contact.swift in Sources */,
+				B6F133DC1AE0860B0072121E /* EditViewController.swift in Sources */,
 				F728C7B31AD9A7E10010322E /* DetailViewController.swift in Sources */,
 				F728C7B11AD9A7E10010322E /* MasterViewController.swift in Sources */,
 				F728C7AF1AD9A7E10010322E /* AppDelegate.swift in Sources */,

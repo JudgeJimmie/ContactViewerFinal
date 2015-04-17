@@ -60,7 +60,7 @@
         <!--Edit-->
         <scene sceneID="pnK-Yo-Gej">
             <objects>
-                <viewController title="Edit" id="GWm-SB-iPC" sceneMemberID="viewController">
+                <viewController title="Edit" id="GWm-SB-iPC" customClass="EditViewController" customModule="Contact_Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N85-hY-EQ2"/>
                         <viewControllerLayoutGuide type="bottom" id="tfi-EX-6es"/>
@@ -69,7 +69,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sC1-bY-hFd">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sC1-bY-hFd">
                                 <rect key="frame" x="67" y="111" width="257" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -77,6 +77,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="editNameText" destination="sC1-bY-hFd" id="lYc-xg-DNJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGC-r2-Xwn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,7 +168,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DHR-UU-rPT"/>
         <segue reference="6S0-TO-JiA"/>
+        <segue reference="DHR-UU-rPT"/>
     </inferredMetricsTieBreakers>
 </document>

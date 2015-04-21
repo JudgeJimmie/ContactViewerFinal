@@ -10,17 +10,20 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    @IBOutlet weak var detailNameLabel: UILabel!
+    @IBOutlet weak var detailTitleLabel: UILabel!
+    @IBOutlet weak var detailEmailLabel: UILabel!
+    @IBOutlet weak var detailTwitterLabel: UILabel!
 
     var detailItem: Contact?
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail: Contact = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.name
-            }
+            self.detailNameLabel.text = detail.name
+            self.detailTitleLabel.text = detail.title
+            self.detailEmailLabel.text = detail.email
+            self.detailTwitterLabel.text = detail.twitterId
         }
     }
 

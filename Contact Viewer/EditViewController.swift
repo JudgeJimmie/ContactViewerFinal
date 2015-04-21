@@ -8,21 +8,37 @@
 import UIKit
 
 class EditViewController: UIViewController {
+
     
     var editItem: Contact?
     
     @IBOutlet weak var editNameText: UITextField!
+    @IBOutlet weak var editTitleText: UITextField!
+    @IBOutlet weak var editEmailText: UITextField!
+    @IBOutlet weak var editTwitterText: UITextField!
+    
     
     func configureEditView() {
         
         if self.editItem==nil{
             self.title="New Contact"
         }
-        // Update the user interface for the detail item.
-        if let editContact: Contact = self.editItem {
+        else{
+            self.title="Edit Contact"
             
+            if let editContact: Contact = self.editItem {
             
-            self.editNameText.text = editContact.name
+                /*
+                name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds")
+                */
+                
+                
+                self.editNameText.text = editContact.name
+                self.editTitleText.text = editContact.title
+                self.editEmailText.text =
+                    editContact.email
+                self.editTwitterText.text = editContact.twitterId
+            }
         }
     }
     

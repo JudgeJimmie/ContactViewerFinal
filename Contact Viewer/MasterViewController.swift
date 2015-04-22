@@ -12,30 +12,72 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var contacts = [Contact]()
-
+    var myContacts = []
 
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             self.clearsSelectionOnViewWillAppear = false
             self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
         
+        //TODO: Get the contacts already saved on the tinyapollo server
+        let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/?key=fingagunz")!
         
-        //TODO: WHILE LOOP TO GET CONTACTS and DISPLAY
+        // create the request
+        var request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
         
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+            
+            // deserialize the response
+            var err: NSError?
+            let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
+            
+            // pass the string back to the main thread
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                // do some main thread stuff stuff
+                self.parseContacts(responseDict)
+            }
+        })
+        task.resume()
         
-        let contact1 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds")
-        let contact2 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds")
-        let contact3 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds")
-        
+
+        let contact1 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds",id: "6")
+        let contact2 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds",id: "6")
+        let contact3 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds",id: "6")
+
         contacts.append(contact1)
         contacts.append(contact2)
         contacts.append(contact3)
 
+        
+
+
     }
 
+    // TODO add the contacts to the contact viewer
+    func parseContacts(responseDict: NSDictionary) {
+        
+        println("Hi")
+        if let allContacts: AnyObject = responseDict["contacts"] {
+            for (var i = 0; i < allContacts.count; i++) {
+                
+                let contact1 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds", id: "6")
+                
+                let myContact = Contact(name: "allContacts[i]['name']", phone: "allContacts[i]['phone']", title: "allContacts[i]['title']", email: "allContacts[i]['email']", twitterId: "allContacts[i]['twitterId']", id: "allContacts[i]['id']")
+                println(allContacts[i]["name"])
+                
+                contacts.append(myContact)
+                contacts.append(contact1)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -129,6 +171,8 @@ class MasterViewController: UITableViewController {
         
         
     }
+    
+    func post(params : Dictionary<String, String>, url : String) {}
 
 }
 

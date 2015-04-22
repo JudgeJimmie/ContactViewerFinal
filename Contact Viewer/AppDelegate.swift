@@ -1,4 +1,4 @@
-		//
+			//
 //  AppDelegate.swift
 //  Contact Viewer
 //
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         //GET request
         let contactId = "552cfc5e6f3ea2517500fef5"
-        let requestURL = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingaGunz")!
+        let requestURL = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingagunz")!
         
         var request = NSMutableURLRequest(URL: requestURL)
         request.HTTPMethod = "GET"
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     func getContact(contactId: String) {
         
-        let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingaGunz")!
+        let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingagunz")!
         
         // create the request
         var request = NSMutableURLRequest(URL: url)
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     
     @IBAction func onButton(sender: AnyObject) {
-        self.getContact("552cfc5e6f3ea2517500fef5")
+        self.getContact("552cfc5e6f3ea251")
     }
     	
 

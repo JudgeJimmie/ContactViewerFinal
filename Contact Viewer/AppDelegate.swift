@@ -1,4 +1,4 @@
-//
+		//
 //  AppDelegate.swift
 //  Contact Viewer
 //
@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         //GET request
         let contactId = "552cfc5e6f3ea2517500fef5"
-        let requestURL = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=admin")!
+        let requestURL = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingaGunz")!
         
         var request = NSMutableURLRequest(URL: requestURL)
         request.HTTPMethod = "GET"
@@ -45,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     
     func getContact(contactId: String) {
-        let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=demo")!
+        
+        let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingaGunz")!
         
         // create the request
         var request = NSMutableURLRequest(URL: url)
@@ -53,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+            
             // deserialize the response
             var err: NSError?
             let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
@@ -70,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     @IBAction func onButton(sender: AnyObject) {
         self.getContact("552cfc5e6f3ea2517500fef5")
     }
-    
+    	
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -48,11 +48,44 @@ class EditViewController: UIViewController {
     }
     
     func saveContact(sender: AnyObject) {
+        
         //      objects.insert(Contact(), atIndex: 0)
         //    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         //  self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         
         //self.performSegueWithIdentifier("unwindEditToDetail", sender: nil)
+        
+        let contactId = "552cfc5e6f3ea2517500fef5"
+        
+        var err: NSError?
+        
+        // We need to Put this contact
+        let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingaGunz")!
+        
+        // create the request
+        var request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "PUT"
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(editItem!, options: nil, error: &err)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+            
+            // deserialize the response
+            
+            
+            let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
+            
+            // pass the string back to the main thread
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                // do some main thread stuff stuff
+                self.onGotContact(responseDict)
+            }
+            	
+        })
+        task.resume()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -67,31 +100,4 @@ class EditViewController: UIViewController {
     func onGotContact(responseDict: NSDictionary) {
         self.detailDescriptionLabel!.text = responseDict["ip"] as? String
     }
-    
-    func getContact(contactId: String) {
-        let url = NSURL(string:"http://ip.jsontest.com")!
-        
-        // create the request
-        var request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
-            // deserialize the response
-            var err: NSError?
-            let responseDict = NSJSONSerialization.JSONObjectWithData(data,             options:.MutableLeaves, error:&err) as NSDictionary
-            
-            // pass the string back to the main thread
-            NSOperationQueue.mainQueue().addOperationWithBlock {
-                // do some main thread stuff stuff
-                self.onGotContact(responseDict)
-            }
-            
-        })
-        task.resume()
-    }
-    
-    @IBAction func buttonTapped(sender: AnyObject) {
-        self.getContact("552cfc5e6f3ea2517500fef5")
-    }
-}
+ }

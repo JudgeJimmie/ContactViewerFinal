@@ -21,6 +21,10 @@ class MasterViewController: UITableViewController {
             self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
         
+        
+        //TODO: WHILE LOOP TO GET CONTACTS and DISPLAY
+        
+        
         let contact1 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds")
         let contact2 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds")
         let contact3 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds")
@@ -28,6 +32,7 @@ class MasterViewController: UITableViewController {
         contacts.append(contact1)
         contacts.append(contact2)
         contacts.append(contact3)
+
     }
 
     override func viewDidLoad() {

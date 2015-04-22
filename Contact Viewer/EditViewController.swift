@@ -61,4 +61,37 @@ class EditViewController: UIViewController {
             controller.editItem = self.detailItem
         }*/
     }
+    
+    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    
+    func onGotContact(responseDict: NSDictionary) {
+        self.detailDescriptionLabel!.text = responseDict["ip"] as? String
+    }
+    
+    func getContact(contactId: String) {
+        let url = NSURL(string:"http://ip.jsontest.com")!
+        
+        // create the request
+        var request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+            // deserialize the response
+            var err: NSError?
+            let responseDict = NSJSONSerialization.JSONObjectWithData(data,             options:.MutableLeaves, error:&err) as NSDictionary
+            
+            // pass the string back to the main thread
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                // do some main thread stuff stuff
+                self.onGotContact(responseDict)
+            }
+            
+        })
+        task.resume()
+    }
+    
+    @IBAction func buttonTapped(sender: AnyObject) {
+        self.getContact("552cfc5e6f3ea2517500fef5")
+    }
 }

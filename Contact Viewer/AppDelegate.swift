@@ -20,8 +20,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
         navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        
+        
+        //GET request
+        let contactId = "552cfc5e6f3ea2517500fef5"
+        let requestURL = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=admin")!
+        
+        var request = NSMutableURLRequest(URL: requestURL)
+        request.HTTPMethod = "GET"
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+            
+        })
+        task.resume()
+
         return true
     }
+
+    let detailDescriptionLabel: UILabel?
+    
+    func onGotContact(responseDict: NSDictionary) {
+        self.detailDescriptionLabel!.text = responseDict["message"] as? String
+    }
+    
+    func getContact(contactId: String) {
+        let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=demo")!
+        
+        // create the request
+        var request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+            // deserialize the response
+            var err: NSError?
+            let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
+            
+            // pass the string back to the main thread
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                // do some main thread stuff stuff
+                self.onGotContact(responseDict)
+            }
+            
+        })
+        task.resume()
+    }
+    
+    @IBAction func onButton(sender: AnyObject) {
+        self.getContact("552cfc5e6f3ea2517500fef5")
+    }
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

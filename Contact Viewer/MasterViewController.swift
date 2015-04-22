@@ -66,9 +66,15 @@ class MasterViewController: UITableViewController {
             for (var i = 0; i < allContacts.count; i++) {
                 
                 let contact1 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds", id: "6")
+                                
+                println(allContacts[i]["name"] as String)
+                println(allContacts[i]["email"] as String)
+                println(allContacts[i]["phone"] as String)
+                println(allContacts[i]["twitterId"] as String)
+                println(allContacts[i]["_id"] as String)
                 
-                let myContact = Contact(name: "allContacts[i]['name']", phone: "allContacts[i]['phone']", title: "allContacts[i]['title']", email: "allContacts[i]['email']", twitterId: "allContacts[i]['twitterId']", id: "allContacts[i]['id']")
-                println(allContacts[i]["name"])
+                let myContact = Contact(name: allContacts[i]["name"] as String, phone: allContacts[i]["phone"] as String, title: allContacts[i]["title"] as String, email: allContacts[i]["email"] as String, twitterId: allContacts[i]["twitterId"] as String, id: allContacts[i]["_id"] as String)
+                
                 
                 contacts.append(myContact)
                 contacts.append(contact1)

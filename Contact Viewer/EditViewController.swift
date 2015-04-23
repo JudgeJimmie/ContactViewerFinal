@@ -79,7 +79,6 @@ class EditViewController: UIViewController {
         // create the request
         var request = NSMutableURLRequest(URL: url)
         
-        
         if self.editItem == nil {
             request.HTTPMethod = "POST"
             //jsonString["_id"] = contactId! as String
@@ -93,8 +92,8 @@ class EditViewController: UIViewController {
         // Ensure my created string is a valid JSON object before using datawithJSONObject
         if NSJSONSerialization.isValidJSONObject(jsonString) {
             
-        // Create and set the JSON object to save
-        let jsonObject = NSJSONSerialization.dataWithJSONObject(jsonString, options: nil, error: &err)
+            // Create and set the JSON object to save
+            let jsonObject = NSJSONSerialization.dataWithJSONObject(jsonString, options: nil, error: &err)
             request.HTTPBody = jsonObject
         }
         
@@ -105,9 +104,7 @@ class EditViewController: UIViewController {
         
         let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
           
-        println("Response: \(response)")
         var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-        println("Body: \(strData)")
             
         // deserialize the response
         let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
@@ -120,6 +117,23 @@ class EditViewController: UIViewController {
             }
         })
         task.resume()
+        
+        // If there is no contact, create one, otherwise just update the fields.
+        if self.editItem == nil {
+            let editItem = Contact(name: editNameText.text, phone: editPhoneText.text, title: editTitleText.text, email: editEmailText.text, twitterId: editTwitterText.text, id: "4")
+            
+            // TODO Find the contact ID, Add to the contacts array
+        } else {
+        
+            // TODO Create or update the contact and add it to the contacts array if necessary
+            editItem?.name = editNameText.text
+            editItem?.phone = editPhoneText.text
+            editItem?.title = editTitleText.text
+            editItem?.email = editEmailText.text
+            editItem?.twitterId = editTwitterText.text
+        }
+        
+        // TODO Update the views
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

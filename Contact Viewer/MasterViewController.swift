@@ -131,6 +131,7 @@ class MasterViewController: UITableViewController {
         return 1
     }
 
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
     }
@@ -151,8 +152,32 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            
+            let contact = contacts[indexPath.row]
+            
             contacts.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            //TODO Delete The contact from the saved data
+            let contactId = contact.id
+            let urlStr = "http://contacts.tinyapollo.com/contacts/" + (contactId as String) + "?key=fingagunz"
+            let url = NSURL(string: urlStr)!
+            
+            // create the request
+            var err: NSError?
+            var request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "DELETE"
+            let session = NSURLSession.sharedSession()
+            
+            let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+                
+                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+                
+                // deserialize the response
+                let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
+            })
+            task.resume()
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }

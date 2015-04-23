@@ -17,6 +17,7 @@ class EditViewController: UIViewController {
     @IBOutlet weak var editTitleText: UITextField!
     @IBOutlet weak var editEmailText: UITextField!
     @IBOutlet weak var editTwitterText: UITextField!
+    @IBOutlet weak var editPhoneText: UITextField!
     
     func configureEditView() {
         
@@ -31,6 +32,7 @@ class EditViewController: UIViewController {
                 self.editTitleText.text = editContact.title
                 self.editEmailText.text = editContact.email
                 self.editTwitterText.text = editContact.twitterId
+                self.editPhoneText.text = editContact.phone
             }
         }
     }
@@ -61,37 +63,40 @@ class EditViewController: UIViewController {
         
         //self.performSegueWithIdentifier("unwindEditToDetail", sender: nil)
         
-        //TODO Make unique contact ID for every save
-        let contactId = "552cfc5e6f3ea251"
-        
-        var err: NSError?
-        
-        // We need to Put this contact
-        let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingagunz")!
-        
-        // create the request
-        var request = NSMutableURLRequest(URL: url)
-        
         // Create JSON object from Contact to save:
-        var jsonString = [ "Name" : self.editItem!.name, "Title" : self.editItem!.title, "Phone" : self.editItem!.phone, "Email" : self.editItem!.email, "Twitter" : self.editItem!.twitterId ]
-        
-        // Set up the request
-        request.HTTPMethod = "PUT"
-        
-        // Ensure my created string is a valid JSON object before using datawithJSONObject
-        if NSJSONSerialization.isValidJSONObject(jsonString) {
+        var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text ]
+        if self.editItem == nil {
+                    var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text ]
+        } else {
+            let contactId = self.editItem?.id
             
-            // Create and set the JSON object to save
-            let jsonObject = NSJSONSerialization.dataWithJSONObject(jsonString, options: nil, error: &err)
-            request.HTTPBody = jsonObject
-        }
+            var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text,"_id" : contactId ]
+            
+            var err: NSError?
         
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
+            // We need to Put this contact
+            let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingagunz")!
         
-        let session = NSURLSession.sharedSession()
+            // create the request
+            var request = NSMutableURLRequest(URL: url)
         
-        let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+            // Set up the request
+            request.HTTPMethod = "PUT"
+        
+            // Ensure my created string is a valid JSON object before using datawithJSONObject
+            if NSJSONSerialization.isValidJSONObject(jsonString) {
+            
+                // Create and set the JSON object to save
+                let jsonObject = NSJSONSerialization.dataWithJSONObject(jsonString, options: nil, error: &err)
+                request.HTTPBody = jsonObject
+            }
+        
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+            let session = NSURLSession.sharedSession()
+        
+            let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
           
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
@@ -108,6 +113,7 @@ class EditViewController: UIViewController {
         
         })
         task.resume()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

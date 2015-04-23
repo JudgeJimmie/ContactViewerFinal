@@ -44,18 +44,6 @@ class MasterViewController: UITableViewController {
             }
         })
         task.resume()
-        
-
-        let contact1 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds",id: "6")
-        let contact2 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds",id: "6")
-        let contact3 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds",id: "6")
-
-        contacts.append(contact1)
-        contacts.append(contact2)
-        contacts.append(contact3)
-        
-        
-
     }
 
     // TODO add the contacts to the contact viewer
@@ -65,8 +53,6 @@ class MasterViewController: UITableViewController {
         if let allContacts: AnyObject = responseDict["contacts"] {
             for (var i = 0; i < allContacts.count; i++) {
                 
-                let contact1 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds", id: "6")
-                
                 println(allContacts[i]["name"] as String)
                 println(allContacts[i]["email"] as String)
                 println(allContacts[i]["phone"] as String)
@@ -75,9 +61,7 @@ class MasterViewController: UITableViewController {
                 
                 let myContact = Contact(name: allContacts[i]["name"] as String, phone: allContacts[i]["phone"] as String, title: allContacts[i]["title"] as String, email: allContacts[i]["email"] as String, twitterId: allContacts[i]["twitterId"] as String, id: allContacts[i]["_id"] as String)
                 
-                
                 contacts.append(myContact)
-                contacts.append(contact1)
             }
         }
     }

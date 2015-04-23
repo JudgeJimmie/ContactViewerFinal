@@ -73,7 +73,10 @@ class EditViewController: UIViewController {
             
             // We need to Put this contact
             let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/?key=fingagunz")!
+
             
+
+
             println(url)
             // create the request
             var request = NSMutableURLRequest(URL: url)
@@ -120,9 +123,9 @@ class EditViewController: UIViewController {
             var err: NSError?
         
             // We need to Put this contact
-            let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/" + contactId! + "?key=fingagunz")!
+            let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/" + contactId! + "?key=fingagunz&Name="+self.editNameText!.text+"&Title=" + self.editTitleText!.text+"&Phone=" + self.editPhoneText!.text+"&Email=" + self.editEmailText!.text+"&Twitter=" + self.editTwitterText!.text)!
         
-            println(url)
+println(url)
             // create the request
             var request = NSMutableURLRequest(URL: url)
         

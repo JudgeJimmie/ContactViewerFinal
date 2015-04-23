@@ -66,17 +66,18 @@ class EditViewController: UIViewController {
         // Create JSON object from Contact to save:
         var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text ]
         if self.editItem == nil {
-                    var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text ]
+            var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text ]
         } else {
-            let contactId = self.editItem?.id
+            var contactId = self.editItem?.id
             
             var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text,"_id" : contactId ]
             
             var err: NSError?
         
             // We need to Put this contact
-            let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/\(contactId)?key=fingagunz")!
+            let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/" + contactId! + "?key=fingagunz")!
         
+            println(url)
             // create the request
             var request = NSMutableURLRequest(URL: url)
         

@@ -40,6 +40,7 @@ class MasterViewController: UITableViewController {
             NSOperationQueue.mainQueue().addOperationWithBlock {
                 // do some main thread stuff stuff
                 self.parseContacts(responseDict)
+                self.tableView.reloadData()
             }
         })
         task.resume()
@@ -52,9 +53,8 @@ class MasterViewController: UITableViewController {
         contacts.append(contact1)
         contacts.append(contact2)
         contacts.append(contact3)
-
         
-
+        
 
     }
 
@@ -66,7 +66,7 @@ class MasterViewController: UITableViewController {
             for (var i = 0; i < allContacts.count; i++) {
                 
                 let contact1 = Contact(name: "Malcolm Reynolds", phone: "612-555-1234", title: "Captain", email: "mal@serenity.com", twitterId: "malreynolds", id: "6")
-                                
+                
                 println(allContacts[i]["name"] as String)
                 println(allContacts[i]["email"] as String)
                 println(allContacts[i]["phone"] as String)

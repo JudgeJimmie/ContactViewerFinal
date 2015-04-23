@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailEmailLabel: UILabel!
     @IBOutlet weak var detailTwitterLabel: UILabel!
+    @IBOutlet weak var detailPhoneLabel: UILabel!
 
     var detailItem: Contact?
 
@@ -24,6 +25,7 @@ class DetailViewController: UIViewController {
             self.detailTitleLabel.text = detail.title
             self.detailEmailLabel.text = detail.email
             self.detailTwitterLabel.text = detail.twitterId
+            self.detailPhoneLabel.text = detail.phone
         }
     }
 

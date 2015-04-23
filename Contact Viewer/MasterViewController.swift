@@ -23,6 +23,11 @@ class MasterViewController: UITableViewController {
         }
         
         //TODO: Get the contacts already saved on the tinyapollo server
+        getContacts()
+    }
+    
+    func getContacts() {
+        //TODO: Get the contacts already saved on the tinyapollo server
         let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/?key=fingagunz")!
         
         // create the request
@@ -77,18 +82,6 @@ class MasterViewController: UITableViewController {
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
-        }
-       
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-        
-        let path = NSBundle.mainBundle().pathForResource("fileName", ofType: "fileExt")
-        
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            // do some async stuff
-            NSOperationQueue.mainQueue().addOperationWithBlock {
-                // do some main thread stuff stuff
-            }
         }
 
     }

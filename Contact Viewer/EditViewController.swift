@@ -104,36 +104,19 @@ class EditViewController: UIViewController {
         
         let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
           
-        var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             
-        // deserialize the response
-        let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
-            
-        // pass the string back to the main thread
-        NSOperationQueue.mainQueue().addOperationWithBlock {
-            // do some main thread stuff stuff
-            self.onGotContact(responseDict)
+            // deserialize the response
+            let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
+                        // pass the string back to the main thread
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                // do some main thread stuff stuff
+                self.onGotContact(responseDict)
+                // TODO Update the Views!!
             
             }
         })
         task.resume()
-        
-        // If there is no contact, create one, otherwise just update the fields.
-        if self.editItem == nil {
-            let editItem = Contact(name: editNameText.text, phone: editPhoneText.text, title: editTitleText.text, email: editEmailText.text, twitterId: editTwitterText.text, id: "4")
-            
-            // TODO Find the contact ID, Add to the contacts array
-        } else {
-        
-            // TODO Create or update the contact and add it to the contacts array if necessary
-            editItem?.name = editNameText.text
-            editItem?.phone = editPhoneText.text
-            editItem?.title = editTitleText.text
-            editItem?.email = editEmailText.text
-            editItem?.twitterId = editTwitterText.text
-        }
-        
-        // TODO Update the views
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -146,6 +129,21 @@ class EditViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
     func onGotContact(responseDict: NSDictionary) {
-        self.editTwitterText.text = responseDict["Name"] as? String
+        
+        // If there is no contact, create one, otherwise just update the fields.
+        if self.editItem == nil {
+            
+            let editItem = Contact(name: editNameText.text, phone: editPhoneText.text, title: editTitleText.text, email: editEmailText.text, twitterId: editTwitterText.text, id: responseDict["_id"] as String)
+            
+            
+            // TODO Find the contact ID, Add to the contacts array
+        } else {
+            // Edit the existing contacts info
+            editItem?.name = editNameText.text
+            editItem?.phone = editPhoneText.text
+            editItem?.title = editTitleText.text
+            editItem?.email = editEmailText.text
+            editItem?.twitterId = editTwitterText.text
+        }
     }
  }

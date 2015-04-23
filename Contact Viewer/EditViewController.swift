@@ -64,9 +64,54 @@ class EditViewController: UIViewController {
         //self.performSegueWithIdentifier("unwindEditToDetail", sender: nil)
         
         // Create JSON object from Contact to save:
-        var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text ]
+        
         if self.editItem == nil {
+            
             var jsonString = [ "Name" : self.editNameText!.text, "Title" : self.editTitleText!.text, "Phone" : self.editPhoneText!.text, "Email" : self.editEmailText!.text, "Twitter" : self.editTwitterText!.text ]
+            
+            var err: NSError?
+            
+            // We need to Put this contact
+            let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/?key=fingagunz")!
+            
+            println(url)
+            // create the request
+            var request = NSMutableURLRequest(URL: url)
+            
+            // Set up the request
+            request.HTTPMethod = "POST"
+            
+            // Ensure my created string is a valid JSON object before using datawithJSONObject
+            if NSJSONSerialization.isValidJSONObject(jsonString) {
+                
+                // Create and set the JSON object to save
+                let jsonObject = NSJSONSerialization.dataWithJSONObject(jsonString, options: nil, error: &err)
+                request.HTTPBody = jsonObject
+            }
+            
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let session = NSURLSession.sharedSession()
+            
+            let task = session.dataTaskWithRequest(request, completionHandler:{data, response, error -> Void in
+                
+                println("Response: \(response)")
+                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+                println("Body: \(strData)")
+                
+                // deserialize the response
+                let responseDict = NSJSONSerialization.JSONObjectWithData(data, options:.MutableLeaves, error:&err) as NSDictionary
+               /*
+                // pass the string back to the main thread
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    // do some main thread stuff stuff
+                    self.onGotContact(responseDict)
+                }
+                */
+            })
+            task.resume()
+            
         } else {
             var contactId = self.editItem?.id
             

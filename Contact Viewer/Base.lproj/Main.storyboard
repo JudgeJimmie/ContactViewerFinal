@@ -56,6 +56,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bte-Ds-0ME">
+                                <rect key="frame" x="202" y="384" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -64,6 +70,7 @@
                     <connections>
                         <outlet property="detailEmailLabel" destination="gpn-3s-JXp" id="0K6-3E-3Mo"/>
                         <outlet property="detailNameLabel" destination="0XM-y9-sOw" id="VMK-v0-mBn"/>
+                        <outlet property="detailPhoneLabel" destination="bte-Ds-0ME" id="HS0-xo-r6b"/>
                         <outlet property="detailTitleLabel" destination="WDz-Sb-QzT" id="ihm-ng-JU2"/>
                         <outlet property="detailTwitterLabel" destination="lPV-9p-dXr" id="0c6-eS-Ibn"/>
                         <segue destination="GWm-SB-iPC" kind="showDetail" identifier="editContactFromDetail" id="DHR-UU-rPT"/>

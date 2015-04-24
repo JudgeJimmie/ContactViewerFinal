@@ -22,10 +22,10 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail: Contact = detailItem {
             self.detailNameLabel.text = detail.name
-            self.detailTitleLabel.text = detail.title
-            self.detailEmailLabel.text = detail.email
-            self.detailTwitterLabel.text = detail.twitterId
-            self.detailPhoneLabel.text = detail.phone
+            self.detailTitleLabel.text = "Title:  " + detail.title
+            self.detailEmailLabel.text = "Email:  " + detail.email
+            self.detailTwitterLabel.text = "Twitter ID:  " + detail.twitterId
+            self.detailPhoneLabel.text = "Phone:  " + detail.phone
         }
     }
     

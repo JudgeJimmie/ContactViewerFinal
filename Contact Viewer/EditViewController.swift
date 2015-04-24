@@ -123,8 +123,10 @@ class EditViewController: UIViewController {
         })
         task.resume()
         
-        
-        
+        var alert = UIAlertView()
+        alert.message = "Successfully Saved"
+        alert.addButtonWithTitle("OK")
+        alert.show()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

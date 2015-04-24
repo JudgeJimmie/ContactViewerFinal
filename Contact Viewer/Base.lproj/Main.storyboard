@@ -74,6 +74,7 @@
                         <outlet property="detailTitleLabel" destination="WDz-Sb-QzT" id="ihm-ng-JU2"/>
                         <outlet property="detailTwitterLabel" destination="lPV-9p-dXr" id="0c6-eS-Ibn"/>
                         <segue destination="GWm-SB-iPC" kind="showDetail" identifier="editContactFromDetail" id="DHR-UU-rPT"/>
+                        <segue destination="ayA-W1-vnv" kind="unwind" unwindAction="unwindToSegue:" id="OSw-DH-sSg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -129,6 +130,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGC-r2-Xwn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ayA-W1-vnv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1544" y="-220"/>
         </scene>
@@ -216,6 +218,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
-        <segue reference="D1H-z7-eqJ"/>
+        <segue reference="DHR-UU-rPT"/>
     </inferredMetricsTieBreakers>
 </document>

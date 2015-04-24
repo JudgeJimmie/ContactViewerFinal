@@ -9,7 +9,6 @@ import UIKit
 import Foundation
 
 class EditViewController: UIViewController {
-
     
     var editItem: Contact?
     
@@ -58,7 +57,13 @@ class EditViewController: UIViewController {
     func saveContact(sender: AnyObject) {
         
         var contactId = self.editItem?.id
-            
+        
+        detailItem?.name = self.editNameText!.text
+        detailItem?.title = self.editTitleText!.text
+        detailItem?.phone = self.editPhoneText!.text
+        detailItem?.email = self.editEmailText!.text
+        detailItem?.twitterId = self.editTwitterText!.text
+        
         var jsonString = [ "name" : self.editNameText!.text,
                 "title" : self.editTitleText!.text,
                 "phone" : self.editPhoneText!.text,
@@ -117,6 +122,9 @@ class EditViewController: UIViewController {
             }
         })
         task.resume()
+        
+        
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

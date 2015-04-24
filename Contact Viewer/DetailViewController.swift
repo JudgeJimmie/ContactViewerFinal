@@ -8,6 +8,8 @@
 
 import UIKit
 
+var detailItem: Contact?
+
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailNameLabel: UILabel!
@@ -16,17 +18,19 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTwitterLabel: UILabel!
     @IBOutlet weak var detailPhoneLabel: UILabel!
 
-    var detailItem: Contact?
-
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: Contact = self.detailItem {
+        if let detail: Contact = detailItem {
             self.detailNameLabel.text = detail.name
             self.detailTitleLabel.text = detail.title
             self.detailEmailLabel.text = detail.email
             self.detailTwitterLabel.text = detail.twitterId
             self.detailPhoneLabel.text = detail.phone
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.configureView()
     }
 
     override func viewDidLoad() {
@@ -37,7 +41,7 @@ class DetailViewController: UIViewController {
         
         
         // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +60,7 @@ class DetailViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             if segue.identifier == "editContactFromDetail"{
                 let controller = segue.destinationViewController as EditViewController
-                controller.editItem = self.detailItem
+                controller.editItem = detailItem
         }
     }
     

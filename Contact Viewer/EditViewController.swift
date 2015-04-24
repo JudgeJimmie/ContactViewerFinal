@@ -116,26 +116,22 @@ class EditViewController: UIViewController {
                         // pass the string back to the main thread
             NSOperationQueue.mainQueue().addOperationWithBlock {
                 // do some main thread stuff stuff
-                self.onGotContact(responseDict)
+                //self.onGotContact(responseDict)
                 // TODO Update the Views!!
-            
+                
+                self.view.endEditing(true)
+                
+                var alert = UIAlertView()
+                alert.message = "Successfully Saved"
+                alert.addButtonWithTitle("OK")
+                alert.show()
             }
         })
         task.resume()
         
-        var alert = UIAlertView()
-        alert.message = "Successfully Saved"
-        alert.addButtonWithTitle("OK")
-        alert.show()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        /*if segue.identifier == "editContactFromDetail"{
-            let controller = segue.destinationViewController as EditViewController
-            controller.editItem = self.detailItem
-        }*/
-    }
-    
+    /*
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
     func onGotContact(responseDict: NSDictionary) {
@@ -156,4 +152,5 @@ class EditViewController: UIViewController {
             editItem?.twitterId = editTwitterText.text
         }
     }
+    */
  }

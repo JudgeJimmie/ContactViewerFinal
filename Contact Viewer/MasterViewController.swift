@@ -13,6 +13,7 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var contacts = [Contact]()
     var myContacts = []
+    var isLoaded = false
 
     override func awakeFromNib() {
         
@@ -23,10 +24,11 @@ class MasterViewController: UITableViewController {
         }
         
         //TODO: Get the contacts already saved on the tinyapollo server
-        getContacts()
+    //    getContacts()
     }
     
     func getContacts() {
+        
         //TODO: Get the contacts already saved on the tinyapollo server
         let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/?key=fingagunz")!
         
@@ -116,6 +118,11 @@ class MasterViewController: UITableViewController {
         else if segue.identifier == "newContact"{
             
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        contacts.removeAll(keepCapacity: true)
+        getContacts()
     }
 
     // MARK: - Table View

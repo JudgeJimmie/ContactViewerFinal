@@ -16,20 +16,16 @@ class MasterViewController: UITableViewController {
     var isLoaded = false
 
     override func awakeFromNib() {
-        
         super.awakeFromNib()
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             self.clearsSelectionOnViewWillAppear = false
             self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
-        
-        //TODO: Get the contacts already saved on the tinyapollo server
-    //    getContacts()
     }
     
     func getContacts() {
         
-        //TODO: Get the contacts already saved on the tinyapollo server
+        //Get the contacts already saved on the tinyapollo server
         let url = NSURL(string:"http://contacts.tinyapollo.com/contacts/?key=fingagunz")!
         
         // create the request
@@ -53,7 +49,7 @@ class MasterViewController: UITableViewController {
         task.resume()
     }
 
-    // TODO add the contacts to the contact viewer
+    // add the contacts to the contact viewer
     func parseContacts(responseDict: NSDictionary) {
         
         println("Hi")
@@ -96,12 +92,6 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-  //      objects.insert(Contact(), atIndex: 0)
-    //    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-      //  self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        
-        
-        
         self.performSegueWithIdentifier("newContactFromMaster", sender: nil)
     }
 
@@ -160,7 +150,7 @@ class MasterViewController: UITableViewController {
             contacts.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
-            //TODO Delete The contact from the saved data
+            
             let contactId = contact.id
             let urlStr = "http://contacts.tinyapollo.com/contacts/" + (contactId as String) + "?key=fingagunz"
             let url = NSURL(string: urlStr)!
